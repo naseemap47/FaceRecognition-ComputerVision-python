@@ -41,9 +41,17 @@ for i in faceLocT:
                   )
 
 # Compare
+count = 0
 for encode in encode_img1T:
     result = fr.compare_faces(encode_img1, encode)
-    print(result)
+    # print(result)
+    # y, x+w, y+h, x = faceLocT
+    LocT = faceLocT[count]
+    cv2.putText(img1T, f'{result[0]}', (LocT[3], LocT[0] - 5),
+                cv2.FONT_HERSHEY_PLAIN, 1.5,
+                (255, 255, 0), 2)
+    count += 1
+
 
 cv2.imshow('Train', img1)
 cv2.imshow('Test', img1T)
