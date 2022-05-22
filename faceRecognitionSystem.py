@@ -11,7 +11,11 @@ test_path = 'test'
 ############################################
 
 classNames = []
+images = []
 myList = os.listdir(train_path)
 for cls in myList:
     classNames.append(cls)
-print(classNames)
+    img = cv2.imread(f'{train_path}/{cls}')
+    images.append(img)
+# print(classNames)
+
