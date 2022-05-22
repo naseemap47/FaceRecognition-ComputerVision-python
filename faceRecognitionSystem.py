@@ -20,6 +20,16 @@ for cls in myList:
     images.append(img)
 # print(classNames)
 
-# Train
+# Train Encodings
 encodings = findEncodings(images)
-print(len(encodings))
+
+# Webcam
+cap = cv2.VideoCapture(0)
+
+while True:
+    success, img = cap.read()
+
+    cv2.imshow('Web-cam', img)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        cv2.destroyAllWindows()
+        break
