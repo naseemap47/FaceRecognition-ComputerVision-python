@@ -1,6 +1,6 @@
 import cv2
-import face_recognition as fr
 import os
+from my_utils import findEncodings
 
 ############################################
 # Parameters
@@ -16,6 +16,10 @@ myList = os.listdir(train_path)
 for cls in myList:
     classNames.append(cls)
     img = cv2.imread(f'{train_path}/{cls}')
+    img = cv2.resize(img, (width, height))
     images.append(img)
 # print(classNames)
 
+# Train
+encodings = findEncodings(images)
+print(len(encodings))
