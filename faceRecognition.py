@@ -1,12 +1,16 @@
 import cv2
 import face_recognition as fr
 
+############################################
 # Parameters
 width = 640
 height = 640
+train_img_path = 'train/Darshan.jpg'
+test_img_path = 'test/Darshan.jpg'
+############################################
 
 # Train
-img1 = fr.load_image_file('train/Darshan.jpg')
+img1 = fr.load_image_file(train_img_path)
 img1 = cv2.resize(img1, (width, height))
 img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
 
@@ -22,9 +26,8 @@ for i in faceLoc:
                   (0, 255, 0), 2
                   )
 
-
 # Test
-img1T = fr.load_image_file('test/Darshan.jpg')
+img1T = fr.load_image_file(test_img_path)
 img1T = cv2.resize(img1T, (width, height))
 img1T = cv2.cvtColor(img1T, cv2.COLOR_BGR2RGB)
 
@@ -51,7 +54,6 @@ for encode in encode_img1T:
                 cv2.FONT_HERSHEY_PLAIN, 1.5,
                 (255, 255, 0), 2)
     count += 1
-
 
 cv2.imshow('Train', img1)
 cv2.imshow('Test', img1T)
