@@ -8,17 +8,16 @@ import numpy as np
 # Parameters
 width = 640
 height = 640
-train_path = 'train'
-test_path = 'test'
+image_data_path = 'Images'
 ############################################
 
 classNames = []
 images = []
-myList = os.listdir(train_path)
+myList = os.listdir(image_data_path)
 myList.sort()  # Sort by alphabetical Order
 for cls in myList:
     classNames.append(os.path.splitext(cls)[0])
-    img = cv2.imread(f'{train_path}/{cls}')
+    img = cv2.imread(f'{image_data_path}/{cls}')
     img = cv2.resize(img, (width, height))
     images.append(img)
 # print(classNames)
@@ -39,12 +38,13 @@ while True:
     for encode, loc in zip(face_encodes, face_locations):
         matches = fr.compare_faces(train_encodings, encode)
         face_dist = fr.face_distance(train_encodings, encode)
-        print(face_dist)
+        # print(face_dist)
         match_index = np.argmin(face_dist)
 
         if matches[match_index]:
             name = classNames[match_index]
-            print(name)
+            # print(name)
+
             # Draw
             cv2.putText(
                 img, f'{name}', (loc[3], loc[0]-6),
