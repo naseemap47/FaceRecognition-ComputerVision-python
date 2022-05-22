@@ -22,6 +22,7 @@ for i in faceLoc:
                   (0, 255, 0), 2
                   )
 
+
 # Test
 img1T = fr.load_image_file('test/Darshan.jpg')
 img1T = cv2.resize(img1T, (width, height))
@@ -39,6 +40,10 @@ for i in faceLocT:
                   (0, 255, 0), 2
                   )
 
+# Compare
+for encode in encode_img1T:
+    result = fr.compare_faces(encode_img1, encode)
+    print(result)
 
 cv2.imshow('Train', img1)
 cv2.imshow('Test', img1T)
