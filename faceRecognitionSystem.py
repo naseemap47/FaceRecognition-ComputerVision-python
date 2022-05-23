@@ -1,6 +1,6 @@
 import cv2
 import os
-from my_utils import findEncodings
+from my_utils import findEncodings, getAttendance
 import face_recognition as fr
 import numpy as np
 
@@ -44,6 +44,9 @@ while True:
         if matches[match_index]:
             name = classNames[match_index]
             # print(name)
+
+            # Attendance saved in Attendance.csv file
+            getAttendance(name)
 
             # Draw
             cv2.putText(
